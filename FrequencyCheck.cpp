@@ -30,6 +30,7 @@ void VectorFill(vector <double>& nums){
     system("pause");    
 }
 
+
 void VectorOut(vector <double> &nums){
     system("cls");
     cout << "\n\n";
@@ -41,11 +42,26 @@ void VectorOut(vector <double> &nums){
             cout << "\nThe number at element [ " << i << " ] of the array is [ " << nums[i] << " ]";
         }
     }
-    cout << '\n';
+    cout << "\n\n";
     system("pause");
     
 }
 
+void VectorEmplace(vector <double> &nums){
+    int ElementToEmplace = 0;
+    int NumberToEmplace = 0;
+    VectorOut(nums);
+    cout << "\nWhich element do you want to emplace with another number?: ";
+    cin >> ElementToEmplace;
+    while(ElementToEmplace < 0 || ElementToEmplace > nums.size()){
+        cout << "\nInvalid element please try again!: ";
+        cin >> ElementToEmplace;
+    }
+    cout << "\nWhat number do you want to emplace it with?: ";
+    cin >> NumberToEmplace;
+    nums[ElementToEmplace] = NumberToEmplace;
+    VectorOut(nums);
+}
 void VectorUniqueNumberCheck(vector <double>& nums){
     system("cls");
     unordered_map<int, double> UniqueMap;
@@ -174,18 +190,19 @@ void Menu(void){
     cout << "\n1. Clean the screen? ";
     cout << "\n2. Fill the array with numbers? ";
     cout << "\n3. Write out the numbers in array? ";
-    cout << "\n4. Check if numbers in array are unique?";
-    cout << "\n5. Sum all of the elements of array";
-    cout << "\n6. Get the highest number of the array";
-    cout << "\n7. Get the lowest number of the array";
-    cout << "\n8. Sort the array from lowest to highest";
-    cout << "\n9. Sort the array from highest to lowest";
-    cout << "\n10. Clear the array? ";
-    cout << "\n11. Exit the program?";
+    cout << "\n4. Emplace a number in the array? ";
+    cout << "\n5. Check if numbers in array are unique?";
+    cout << "\n6. Sum all of the elements of array";
+    cout << "\n7. Get the highest number of the array";
+    cout << "\n8. Get the lowest number of the array";
+    cout << "\n9. Sort the array from lowest to highest";
+    cout << "\n10. Sort the array from highest to lowest";
+    cout << "\n11. Clear the array? ";
+    cout << "\n12. Exit the program?";
     cout << "\nSelect your option: ";
     cin >> OptionSelect;
-    while(OptionSelect <= 0 || OptionSelect > 11){
-        cout << "\nInvalid option! Only numbers from 1-11 are accepted";
+    while(OptionSelect <= 0 || OptionSelect > 12){
+        cout << "\nInvalid option! Only numbers from 1-12 are accepted";
         cout << "\nSelect your option again: ";
         cin >> OptionSelect;
     }
@@ -204,34 +221,38 @@ void Menu(void){
             break;
         }
         case 4:{
-            VectorUniqueNumberCheck(nums);
+            VectorEmplace(nums);
             break;
         }
         case 5:{
-            VectorSum(nums);
+            VectorUniqueNumberCheck(nums);
             break;
         }
         case 6:{
-            VectorHighest(nums);
+            VectorSum(nums);
             break;
         }
         case 7:{
-            VectorLowest(nums);
+            VectorHighest(nums);
             break;
         }
         case 8:{
-            VectorSortHighest(nums);
+            VectorLowest(nums);
             break;
         }
         case 9:{
-            VectorSortLowest(nums);
+            VectorSortHighest(nums);
             break;
         }
         case 10:{
-            VectorClear(nums);
+            VectorSortLowest(nums);
             break;
         }
         case 11:{
+            VectorClear(nums);
+            break;
+        }
+        case 12:{
             system("cls");
             cout << "Closing the program.";
             exit(0);
@@ -242,6 +263,7 @@ void Menu(void){
     
     }
 }
+
 int main(){
     Menu();
     return 0;
